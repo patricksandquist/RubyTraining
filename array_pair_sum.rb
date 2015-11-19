@@ -1,3 +1,6 @@
+# Given an integer array, output all pairs that sum up to a specific value k.
+# Value pairs should be unique and take the form [min, max]
+
 # O(n^2)
 def pair_sum(array, k)
   pairs = []
