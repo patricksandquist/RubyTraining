@@ -10,3 +10,5 @@ end
 puts missing_number([4, 4, 2, 6, 0, 3], [6, 4, 2, 3, 4]) == 0
 puts missing_number([4, 4, 2, 6, 0, 3], [6, 4, 2, 3, 0]) == 4
 puts missing_number([4], []) == 4
+
+# Time complexity is O(n).
