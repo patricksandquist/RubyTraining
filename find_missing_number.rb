@@ -3,6 +3,8 @@
 # Given these two arrays, find which element is missing in the second array.
 
 def missing_number(arr1, arr2)
+  return arr1.first if arr2.empty?
+  arr1.reduce(:+) - arr2.reduce(:+)
 end
 
 puts missing_number([4, 4, 2, 6, 0, 3], [6, 4, 2, 3, 4]) == 0
