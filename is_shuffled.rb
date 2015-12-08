@@ -22,6 +22,8 @@ def is_shuffled?(str1, str2, str3)
   return false
 end
 
+# Time complexity is O(n) where n is the length of str3.
+
 puts is_shuffled?("abc", "def", "dabecf") == true
 puts is_shuffled?("abc", "def", "dbaecf") == false
 puts is_shuffled?("abc", "def", "dabecff") == false
