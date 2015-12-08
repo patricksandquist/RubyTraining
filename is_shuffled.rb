@@ -4,6 +4,22 @@
 # each string.
 
 def is_shuffled?(str1, str2, str3)
+  return false unless str1.length + str2.length == str3.length
+  return false if str1[0] != str3[0] && str2[0] != str3[0]
+
+  if str1.empty? || str2.empty?
+    return true if str1 + str2 == str3
+  end
+
+  if str1[0] == str3[0] && is_shuffled?(str1[1..-1], str2, str3[1..-1])
+    return true
+  end
+
+  if str2[0] == str3[0] && is_shuffled?(str1, str2[1..-1], str3[1..-1])
+    return true
+  end
+
+  return false
 end
 
 puts is_shuffled?("abc", "def", "dabecf") == true
