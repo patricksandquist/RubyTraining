@@ -1,5 +1,6 @@
 # Given an input string, reverse all the words.
 def reverser(str)
+  str.split.reverse.join(' ')
 end
 
 # Time complexity is O(n).
