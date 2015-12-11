@@ -15,6 +15,9 @@ def permutations(str)
   output
 end
 
+# Time complexity is O(n!) which sounds bad but is actually optimal. This is
+# just a computationally intensive problem!
+
 puts permutations("ABC").sort == ["ABC", "BAC", "BCA", "ACB", "CAB", "CBA"].sort # order doesn't matter
 puts permutations("AB").sort == ["AB", "BA"].sort # order doesn't matter
 puts permutations("dogs").sort == [
