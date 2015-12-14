@@ -12,3 +12,6 @@
   end
   puts
 end
+
+# The time complexity of this is O(n^2) where n is the maximum number being
+# multiplied by itself. This is due to the nested loop nature.
