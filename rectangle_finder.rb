@@ -51,12 +51,39 @@ def bottom_right(arr, ul)
   [br_row, br_col]
 end
 
+# Extending this problem further, what if there were multiple rectangles of ones
+# in the array? Return a list of all of the rectangles' coordinates. You may assume
+# that the rectangles are always separated by zeros.
+# [[0, 0, 0, 0, 0, 0],
+#  [0, 1, 1, 1, 0, 0],
+#  [0, 1, 1, 1, 0, 0],
+#  [0, 0, 0, 0, 0, 0],
+#  [0, 0, 1, 1, 1, 1],
+#  [0, 0, 1, 1, 1, 1]]
+# => [[[1, 1], [2, 3]], [[4, 2], [5, 5]]]
+
+def rectangles_finder(arr)
+  rectangle_spots = {} # will keep track of where rectangles occupy
+
+  
+  # Find the upper left coordinates
+  ul_row = arr.index { |row| row.include?(1) }
+  ul_col = arr[ul_row].index(1)
+
+  # Find the bottom right coordinates from this
+  br = bottom_right(arr, [ul_row, ul_col])
+
+  # Return the two together
+  [[ul_row, ul_col], br]
+end
 
 test_arr = [
   [0, 0, 0, 0, 0, 0],
   [0, 1, 1, 1, 0, 0],
   [0, 1, 1, 1, 0, 0],
-  [0, 0, 0, 0, 0, 0]
+  [0, 0, 0, 0, 0, 0],
+  [0, 0, 1, 1, 1, 1],
+  [0, 0, 1, 1, 1, 1]
 ]
 
-puts rectangle_finder(test_arr) == [[1, 1], [2, 3]]
+puts rectangles_finder(test_arr) == [[[1, 1], [2, 3]], [[4, 2], [5, 5]]]
