@@ -29,9 +29,23 @@ def bottom_right(arr, ul)
       br_row = row - 1
       break
     end
+
     # If at the bottom of the array, the rectangle goes to the edge
-    if row == arr.length - 1
-      br_row = row
+    br_row = row if row == arr.length - 1
+  end
+
+  # The find the last column of the rectangle
+  (ul[1] + 1...arr[0].length).each do |col|
+    if arr[ul[0]][col].zero?
+      # Not part of the rectangle
+      br_col = col - 1
       break
     end
+
+    # If at the end of the arr, the rectangle extends to the end
+    br_col = col if col == arr[0].length
+  end
+
+  # Return the two together
+  [br_row, br_col]
 end
