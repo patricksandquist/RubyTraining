@@ -64,17 +64,39 @@ end
 
 def rectangles_finder(arr)
   rectangle_spots = {} # will keep track of where rectangles occupy
+  rectangles = [] # will keep track of the rectangle corners for output
 
-  
-  # Find the upper left coordinates
-  ul_row = arr.index { |row| row.include?(1) }
-  ul_col = arr[ul_row].index(1)
+  arr.each_with_index do |row, i|
+    row.each_with_index do |el, j|
+      if el == 1 && !rectangle_spots.include?([i, j])
+        # Found a new rectangle corner
+        ul = [i, j]
+        br = bottom_right(arr, ul)
 
-  # Find the bottom right coordinates from this
-  br = bottom_right(arr, [ul_row, ul_col])
+        # Add the rectangle corners to the output
+        rectangles << [ul, br]
 
-  # Return the two together
-  [[ul_row, ul_col], br]
+        # Add the new coordinates to the hash
+        rectangle_spots = update_hash(rectangle_spots, [ul, br])
+      end
+    end
+  end
+
+  # Return the rectangles
+  rectangles
+end
+
+def update_hash(hash, coords)
+  # Given coordinates of a rectangle [upper left, bottom right], add all of the
+  # occupied coordinates to the hash and return it
+  (coords[0][0]..coords[1][0]).each do |i|
+    (coords[0][1]..coords[1][1]).each do |j|
+      coord = [i, j]
+      hash[coord] = true
+    end
+  end
+
+  hash
 end
 
 test_arr = [
