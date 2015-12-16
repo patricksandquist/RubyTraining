@@ -21,6 +21,7 @@ end
 def bottom_right(arr, ul)
   # Given the upper left coordinates of a rectangle in an array, find the bottom
   # right coordinates
+  br_row, br_col = nil
 
   # First, find the last row of the rectangle
   (ul[0] + 1...arr.length).each do |row|
@@ -29,10 +30,10 @@ def bottom_right(arr, ul)
       br_row = row - 1
       break
     end
-
-    # If at the bottom of the array, the rectangle goes to the edge
-    br_row = row if row == arr.length - 1
   end
+
+  # If br_row not defined, the rectangle goes to the edge
+  br_row ||= arr.length - 1
 
   # The find the last column of the rectangle
   (ul[1] + 1...arr[0].length).each do |col|
@@ -41,11 +42,21 @@ def bottom_right(arr, ul)
       br_col = col - 1
       break
     end
-
-    # If at the end of the arr, the rectangle extends to the end
-    br_col = col if col == arr[0].length
   end
+
+  # If br_col not defined, the rectangle goes to the edge
+  br_col ||= arr[0].length - 1
 
   # Return the two together
   [br_row, br_col]
 end
+
+
+test_arr = [
+  [0, 0, 0, 0, 0, 0],
+  [0, 1, 1, 1, 0, 0],
+  [0, 1, 1, 1, 0, 0],
+  [0, 0, 0, 0, 0, 0]
+]
+
+puts rectangle_finder(test_arr) == [[1, 1], [2, 3]]
